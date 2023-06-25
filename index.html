@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>PlayVibes.js - Dheirya Tyagi</title>
+      <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:500,900" rel="stylesheet" type="text/css" />
+      <style>
+         @font-face {
+            font-family: "Clash Display Bold";
+            src: url("https://cdn.jsdelivr.net/gh/Dheirya/CodeGenStatic/cdn/ClashDisplayBold.woff");
+         }
+         @font-face {
+            font-family: "Clash Grotesk Medium";
+            src: url("https://cdn.jsdelivr.net/gh/Dheirya/CodeGenStatic/cdn/ClashDisplayMedium.woff");
+         }
+         :root {
+            touch-action: pan-x pan-y;
+            height: 100%;
+         }
+         html,
+         body {
+            font-family: "Open Sans" sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #161627;
+            color: #161627;
+            scroll-behavior: smooth;
+         }
+         header {
+            height: 100vh;
+            background-image: url("https://res.cloudinary.com/dgqhucnpf/image/upload/v1687544573/anime_hero_d4h8kj_x0yqu9.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin-bottom: 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+         }
+         h1 {
+            font-size: 9vw;
+            font-weight: 900;
+            text-shadow: 2.5px 2.5px #e7bf99;
+         }
+         button {
+            background: transparent;
+            border: solid 2px #161627;
+            font-size: 2vw;
+            border-radius: 5px;
+            padding: 10px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: filter 0.75s;
+            margin-top: 20px;
+            text-shadow: 1px 1px 1px #e7bf99;
+            filter: drop-shadow(1px 1px 1px #e7bf99);
+         }
+         @media (max-width: 768px) {
+            h1 {
+               font-size: 15vw;
+            }
+            button {
+               font-size: 3.5vw;
+            }
+         }
+         button:hover {
+            filter: drop-shadow(1px 1px 1px #e7bf99) invert(20%);
+         }
+         main {
+            color: #fff;
+            padding-left: 10vw;
+            padding-right: 10vw;
+         }
+         .check-it-out {
+            width: 150px;
+            transform: rotate(-15deg);
+            position: absolute;
+            bottom: 25px;
+            left: 15px;
+            filter: drop-shadow(1px 1px 1px #000);
+            transition: opacity 1s;
+         }
+         .check-it-out.fade {
+            opacity: 0;
+         }
+         main h2 {
+            font-family: "Clash Display Bold", sans-serif;
+            font-size: 250%;
+            margin-bottom: -7.5px;
+            text-align: center;
+         }
+         main p,
+         main li {
+            font-family: "Clash Grotesk Medium", sans-serif;
+            text-align: center;
+         }
+         main ul {
+            text-align: center;
+            list-style-position: inside;
+         }
+         main code {
+            width: 60vw;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+            padding-top: 0px !important;
+            margin-bottom: -25px;
+         }
+         main p a {
+            color: #fff;
+         }
+         pre code.hljs {
+            display: block;
+            overflow-x: auto;
+            padding: 1em;
+         }
+      </style>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/highlight.js/src/styles/atom-one-dark.css" />
+   </head>
+   <body>
+      <header>
+         <h1>PlayVibes.js</h1>
+         <button id="play-button" onclick="MusicPlayer.playVideoOnClick();changeText()">PLAY</button>
+         <img id="cio" class="check-it-out" src="https://res.cloudinary.com/dgqhucnpf/image/upload/v1687613348/imageedit_2_7207846199_mqatne.png" />
+      </header>
+      <main>
+         <h2>About</h2>
+         <p>
+            PlayVibes.js is a lightweight JavaScript plugin that allows you to easily add a music player to your web page using YouTube's iframe API. With PlayVibes.js, you can enhance your website with a stylish vinyl record player
+            interface that plays music from a YouTube playlist.
+         </p>
+         <h2>Docs</h2>
+         <p>To install PlayVibes.js, you can either download the file and host it on your own server, or you can use our CDN, courtesy of jsDelivr:</p>
+         <pre>
+<code class="language-html">
+&lt;script src=&quot;https://cdn.jsdelivr.net/gh/Dheirya/PlayVibes.js/music.min.js&quot;&gt;&lt;/script&gt;<br />
+&lt;!-- OR: &lt;script src=&quot;path/to/playvibes.js&quot;&gt;&lt;/script&gt; --&gt;
+</code>
+        </pre>
+         <p>To initialize the PlayVibes.js plugin, you need to call the MusicPlayer() function with the following required configurations:</p>
+         <pre>
+<code class="language-html">
+&lt;script src=&quot;https://cdn.jsdelivr.net/gh/Dheirya/PlayVibes.js/playvibes.js&quot;&gt;&lt;/script&gt;<br />
+&lt;script&gt;<br />
+&nbsp; &nbsp;new MusicPlayer({<br />
+&nbsp; &nbsp; &nbsp; &nbsp;playlistID: &#039;PLwG4ajavaJ9Kuq_BwaJDLS58ilgLGJRKS&#039;,<br />
+&nbsp; &nbsp; &nbsp; &nbsp;autoplay: true,<br />
+&nbsp; &nbsp; &nbsp; &nbsp;functions: false,<br />
+&nbsp; &nbsp; &nbsp; &nbsp;position: &quot;left&quot;,<br />
+&nbsp; &nbsp; &nbsp; &nbsp;hide: false<br />
+&nbsp; &nbsp;});
+&lt;/script&gt;
+</code>
+        </pre>
+         <p>The configuration accepts the following:</p>
+         <ul>
+            <li><b>playlistID</b>: ID of the youtube playlist as a string</li>
+            <li><b>autoplay</b>: Set it to true to autoplay based on user interaction and false to not</li>
+            <li><b>functions</b>: True/false, allows access to the JS functions of the player allowing custom buttons</li>
+            <li><b>position</b>: Positions vinyl disk on left or right bottom site of screen</li>
+            <li><b>hide</b>: Shows/hides the default vinyl disk. Useful when also using functions</li>
+         </ul>
+         <h2>Contributions</h2>
+         <p>
+            Contributions to PlayVibes.js are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request on the
+            <a href="https://github.com/Dheirya/PlayVibes.js" target="_blank">GitHub repository</a>.
+         </p>
+      </main>
+      <script src="https://cdn.jsdelivr.net/gh/Dheirya/PlayVibes.js/playvibes.js"></script>
+      <script>
+         new MusicPlayer({
+            playlistID: "PLwG4ajavaJ9Kuq_BwaJDLS58ilgLGJRKS",
+            autoplay: true,
+            functions: true,
+            position: "left",
+            hide: false,
+         });
+         playing = false;
+         function changeText() {
+            document.body.removeEventListener("click", changeText);
+            if (playing) {
+               if (!window.pageYOffset) {
+                  document.getElementById("cio").classList.remove("fade");
+               }
+               document.getElementById("play-button").innerHTML = "PLAY";
+               playing = false;
+            } else {
+               if (!window.pageYOffset) {
+                  document.getElementById("cio").classList.add("fade");
+               }
+               document.getElementById("play-button").innerHTML = "PAUSE";
+               playing = true;
+            }
+         }
+         document.getElementsByClassName("REqBe2MtzE_vinyl")[0].addEventListener("click", changeText);
+         document.body.addEventListener("click", changeText);
+         if (window.pageYOffset) {
+            document.getElementById("cio").style.display = "none";
+         }
+         document.body.onscroll = function () {
+            if (!playing) {
+               if (!window.pageYOffset) {
+                  document.getElementById("cio").classList.remove("fade");
+               } else {
+                  document.getElementById("cio").classList.add("fade");
+               }
+            }
+         };
+      </script>
+      <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script>
+      <script>
+         hljs.highlightAll();
+      </script>
+   </body>
+</html>
